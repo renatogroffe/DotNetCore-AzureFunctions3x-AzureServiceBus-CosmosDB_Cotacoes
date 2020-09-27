@@ -12,13 +12,13 @@ namespace ProcessamentoCotacoes.Data
     {
         private const string DB_COTACOES = "DBCotacoes";
         private const string COLLECTION_HISTORICO = "HistoricoMoedas";
-        private readonly string _DBAcoesEndpointUri;
-        private readonly string _DBAcoesEndpointPrimaryKey;
+        private readonly string _DBCotacoesEndpointUri;
+        private readonly string _DBCotacoesEndpointPrimaryKey;
 
         public CotacoesRepository(IConfiguration configuration)
         {
-            _DBAcoesEndpointUri = configuration["DBAcoesEndpointUri"];
-            _DBAcoesEndpointPrimaryKey = configuration["DBAcoesEndpointPrimaryKey"];
+            _DBCotacoesEndpointUri = configuration["DBCotacoesEndpointUri"];
+            _DBCotacoesEndpointPrimaryKey = configuration["DBCotacoesEndpointPrimaryKey"];
 
             using var client = GetDocumentClient();
 
@@ -40,7 +40,7 @@ namespace ProcessamentoCotacoes.Data
         private DocumentClient GetDocumentClient()
         {
             return new DocumentClient(
-                new Uri(_DBAcoesEndpointUri), _DBAcoesEndpointPrimaryKey);
+                new Uri(_DBCotacoesEndpointUri), _DBCotacoesEndpointPrimaryKey);
         }
 
         public void Save(CotacaoMoeda cotacao)
